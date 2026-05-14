@@ -7,7 +7,3 @@ except FileExistsError:
 def addProvider():
     with open("SLD.txt", "w") as file:
         providers = input("")
-
-
-
-    
