@@ -4,9 +4,10 @@ try:
 except FileExistsError:
     print("File Exist Already")
 
+
 personInfo = []
 
-def personalInfo():
+def postApplication():
         print("\nPersonal Information")
         firstName = input("Enter First Name: ")
         
@@ -23,15 +24,17 @@ def personalInfo():
         while True:
             try:
                 contact = int(input("Enter contact number: "))
-            except:
+                break
+            except ValueError:
                 print("Please enter a valid contact number.")
                 continue
         while True:
-            try: 
-                dateBirth = input("Enter Birthday (mm/dd/yyyy): ")
-            except:
+            dateBirth = input("Enter Birthday (mm/dd/yyyy): ")
+
+            if "/" in dateBirth:
+                break
+            else:
                 print("Please enter a valid birthdate.")
-                continue
 
         gender = input("Enter gender (Male/Female): ")
 
@@ -44,16 +47,21 @@ def personalInfo():
         while True:
             try: 
                 zipCode = int(input("Enter Zip Code (####): "))
-            except:
+                break
+            except ValueError:
                 print("Please enter a valid zip code.")
                 continue
 
         profTitle = input("Enter Professional Title (ex. Electrician): ")
+
         while True:
             try: 
                 hourRate = int(input("Enter your hourly rate: "))
-            except:
+                break
+            except ValueError:
                 print("Enter valid hourly rate.")
+
+        employType = input("Enter Work Type (Full Time/Part Time/Freelance/Contract): ")
 #clear screen
 #----------------------------------------------------------------
         print("\n--=Work Experience (in a Company)=--")
@@ -64,13 +72,15 @@ def personalInfo():
         while True:
             try: 
                 dateStart = int(input("Enter date started (Year): "))
-            except:
+                break
+            except ValueError:
                 print("Please enter a valid year")
                 continue
         while True:
             try:
                 dateEnded = int(input("Enter date ended (Year): "))
-            except:
+                break
+            except ValueError:
                 print("Please enter a valid date.")
 
 #clear screen
@@ -87,22 +97,83 @@ def personalInfo():
             "zipCode": zipCode,
             "profTitle": profTitle,
             "hourRate": hourRate,
+            "employType": employType,
             "jobTitle": jobTitle,
             "companyName": companyName,
             "dateStart": dateStart,   
             "dateEnded": dateEnded
         }
         try:
-            personInfo.append(personInfos)
-
-            with open("SLD.txt", "a") as file:
-                file.write(str(personInfos) + "\n")
-
-            print("Information saved succesfully")
-        except:
-            print("An error occured.")
-            
+            with open("SLD_FILE", "a") as file:
+                writer = csv.DictWriter(f, fieldnames=FIELDNAMES)
+                writer.writerow(record)
+                print("\n  ✓ Application saved successfully!")
+        except Exception as e:
+            print(f"\nError saving application: {e}")
 
         return
 
-personalInfo()
+def findWorkers():
+    print("--=Search Workers=--")
+
+    searchJob = input("Enter Job Title: ").lower()
+    searchType = input("Enter Type of Worker (Full Time/Part Time/Freelance/Contract): ")
+    searchLoc = input("Enter Location: ").lower()
+
+    while True:
+        try:
+            minExperience = int(input("Enter Minimum Experience: "))
+            break
+        except ValueError:
+            print("Invalid Input. Please Try Again")
+            continue
+
+    while True:
+        try:
+            minRating = int(input("Enter Minimum Rating: "))
+            break
+        except ValueError:
+            print("Invalid Input. Please Try Again.")
+            continue
+
+    found = False
+
+    with open("SLD.txt", "r") as file:
+        for worker in file:
+            data = worker.strip().split(",")
+
+            firstName = data[0]
+            lastName = data[1]
+            profTitle = data[2]
+            city = data[3]
+            province = data[4]
+            experience = int(data[5])
+            rating = float(data[6])
+            hourRate = data[7]
+            employType = data[8]
+
+            if (
+                searchJob in profTitle.lower()
+                and searchType in employType.lower()
+                and searchLoc in city.lower()
+                and experience >= minExperience
+                and rating >= minRating
+            ):
+
+                print("\n===== WORKER FOUND =====")
+                print("Name:", firstName, lastName)
+                print("Profession:", profTitle)
+                print("Employment Type:", employmentType)
+                print("Location:", city)
+                print("Experience:", experience, "years")
+                print("Rating:", rating)
+                print("Hourly Rate:", hourRate)
+
+                found = True
+
+    if not found:
+        print("\nNo matching workers found.")
+
+
+
+    
