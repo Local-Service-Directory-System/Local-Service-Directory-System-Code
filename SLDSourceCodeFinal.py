@@ -57,11 +57,19 @@ def addWorker():
     while True:
         try:
             contact = int(input("Enter contact number: "))
-            break
+            if str(contact)[0] == '0' and str(contact)[1] == '9' and len(str(contact)) == 11:
+                break
         except ValueError:
             print("Invalid input. Try Again")
 
+    while True:
         socialMedia = input("Social Media Account (ex. Facebook Juan Cruz): ")
+        if socialMedia.isdigit:
+            print("Invalid input. Try Again")
+            continue
+        else:
+            break
+
 
     worker = {
         "firstName": firstName,
