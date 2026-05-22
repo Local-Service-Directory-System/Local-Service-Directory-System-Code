@@ -1,0 +1,42 @@
+[
+    {
+        "firstName": "Auvrey Gel",
+        "lastName": "Patindol",
+        "barangay": "Lumbia",
+        "zone": "Zone 2",
+        "profession": "Web Develoepr",
+        "hourRate": 81,
+        "contact": 9363577520,
+        "socialMedia": "Auvrey Pats"
+    },
+    {
+        "firstName": "Cassandra",
+        "lastName": "Hell Yeah",
+        "barangay": "Carmen",
+        "zone": "Zone 6",
+        "profession": "Backend Programmer",
+        "hourRate": 79,
+        "contact": 9057834657,
+        "socialMedia": "Salon De Belen"
+    },
+    {
+        "firstName": "Lauraine",
+        "lastName": "Mendoza",
+        "barangay": "Lapasan",
+        "zone": "Tir Wesd 2",
+        "profession": "Developer",
+        "hourRate": 91,
+        "contact": 9876543214,
+        "socialMedia": "Lauraine Hell Yeah"
+    },
+    {
+        "firstName": "Richard",
+        "lastName": "Taglinao",
+        "barangay": "Nazareth",
+        "zone": "89",
+        "profession": "Dwihgt Ramos",
+        "hourRate": 81,
+        "contact": 9875468923,
+        "socialMedia": "Richard Yarn"
+    }
+]

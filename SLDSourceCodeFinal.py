@@ -1,4 +1,27 @@
-workers = []
+
+#TO CLEAR
+import os
+
+def cls():
+    os.system('cls' if os.name == 'nt' else 'clear')
+
+
+#TO SAVE FILE
+import json
+
+def saveToFile():
+    with open("workersfile.json", "w") as f:
+        json.dump(workers, f, indent=4)
+
+def loadFromFile():
+    global workers
+    try:
+        with open("workersfile.json", "r") as f:
+            workers = json.load(f)
+    except FileNotFoundError:
+        workers = []
+
+loadFromFile()
 
 #INSERTION SORT FUNCTION-------------------------------------------
 
@@ -41,34 +64,61 @@ def addWorker():
 
     print("\n=== Post Application ===")
 
-    firstName = input("Enter first name: ")
-    lastName = input("Enter last name: ")
-    barangay = input("Enter barangay: ")
-    zone = input("Enter zone: ")
-    profession = input("Enter profession: ")
-    
+    while True:
+        firstName = input("Enter first name: ").strip()
+        if firstName == "" or not firstName.replace(" ", "").isalpha():
+            print("Invalid first name. Try Again")
+            continue
+        firstName = firstName.title()
+        break
 
     while True:
+        lastName = input("Enter last name: ").strip()
+        if lastName == "" or not lastName.replace(" ", "").isalpha():
+            print("Invalid last name. Try Again")
+            continue
+        lastName = lastName.title()
+        break
+
+    while True:
+        barangay = input("Enter barangay: ").strip()
+        if barangay == "":
+            print("Invalid input. Try Again")
+            continue
+        barangay = barangay.title()
+        break
+
+    zone = input("Enter zone: ").strip().title()
+
+    while True:
+        profession = input("Enter profession: ").strip()
+        if profession == "" or not profession.replace(" ", "").isalpha():
+            print("Invalid profession. Try Again")
+            continue
+        profession = profession.title()
+        break
+        
+    while True:
         try:
-            hourRate = int(input("Enter hourly rate: "))
+            hourRate = int(input("Enter hourly rate($): "))
             break
         except ValueError:
             print("Invalid input. Try Again")
 
     while True:
-        try:
-            contact = int(input("Enter contact number: "))
-            if str(contact)[0] == '0' and str(contact)[1] == '9' and len(str(contact)) == 11:
-                break
-        except ValueError:
-            print("Invalid input. Try Again")
+        contact = input("Enter contact number: ").strip()
+        if contact[:2] == '09' and len(contact) == 11 and contact.isdigit():
+            contact = int(contact)
+            break
+        print("Invalid input. Try Again")
+        
 
     while True:
         socialMedia = input("Social Media Account (ex. Facebook Juan Cruz): ")
-        if socialMedia.isdigit:
+        if socialMedia.strip() == "" or socialMedia.strip().isdigit():
             print("Invalid input. Try Again")
-            continue
         else:
+            socialMedia = socialMedia.title()
             break
 
 
@@ -89,6 +139,9 @@ def addWorker():
     print("Worker added successfully.")
     print("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
 
+    input("Press Enter to continue...")
+    saveToFile()
+
 #DISPLAY ALL WORKERS-------------------------------------------------
 
 def displayWorkers():
@@ -100,19 +153,47 @@ def displayWorkers():
         return
 
     print("\n====SERVICE PROVIDERS====")
-
     for i, worker in enumerate(workers):
-        print("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
-        print(f"\nWorker #{i+1}")
-        print("Name:", worker["firstName"], worker["lastName"])
-        print("Barangay:", worker["barangay"])
-        print("Zone:", worker["zone"])
-        print("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
-        print("Profession:", worker["profession"])
-        print("Hourly Rate:", worker["hourRate"])
-        print("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
-        print("Contact Number:", worker["contact"])
-        print("Social Media Account:", worker["socialMedia"])
+        print(f"#{i+1} {worker['firstName']} {worker['lastName']} — {worker['profession']}")
+
+    print("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
+    
+    while True:
+        try:
+            choice = int(input("Enter worker number to view details (0 to go back): "))
+            if choice == 0:
+                return
+            elif 1 <= choice <= len(workers):
+                worker = workers[choice - 1]
+                print("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
+                print(f"Worker #{choice}")
+                print("Name:", worker["firstName"], worker["lastName"])
+                print("Barangay:", worker["barangay"])
+                print("Zone:", worker["zone"])
+                print("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
+                print("Profession:", worker["profession"])
+                print("Hourly Rate:", worker["hourRate"])
+                print("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
+                print("Contact Number:", worker["contact"])
+                print("Social Media Account:", worker["socialMedia"])
+                print("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
+                hire = input("Do you want to hire this worker? (y/n): ")
+                if hire.lower() == "y":
+                    cls()
+                    print(f"\nWorker chosen: {worker['firstName']} {worker['lastName']}")
+                    print(f"A message has been sent. Please refer to 0{worker['contact']} for more communication and contact.")
+                    print("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
+                else:
+                    print("\nSorry, this worker was not the perfect fit. Please press Enter to go back to menu.")
+                    print("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
+                input("Press Enter to continue...")
+                return
+            else:
+                print("Invalid number. Try Again")
+        except ValueError:
+            print("Invalid input. Try Again")
+
+        input("Press Enter to continue...")
 
 #SEARCH WORKER------------------------------------------------------
 
@@ -121,9 +202,9 @@ def searchWorker():
     target = input("Enter expertise/profession to search: ")
     result = binarySearch(target)
     if result != -1:
+        cls()
         worker = workers[result]
-        print("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
-        print("\nWorker Found")
+        print("\nWorker Found!!!")
         print("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
         print("Name:", worker["firstName"], worker["lastName"])
         print("Barangay:", worker["barangay"])
@@ -134,10 +215,22 @@ def searchWorker():
         print("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
         print("Contact Number:", worker["contact"])
         print("Social Media Account:", worker["socialMedia"])
+        hire = input("Do you want to hire this worker? (y/n): ")
+        if hire.lower() == "y":
+                    cls()
+                    print(f"\nWorker chosen: {worker['firstName']} {worker['lastName']}")
+                    print(f"A message has been sent. Please refer to 0{worker['contact']} for more communication and contact.")
+                    print("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
+        else:
+            print("\nSorry, this worker was not the perfect fit. Please press Enter to go back to menu.")
+            print("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
+
     else:
         print("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
-        print("Worker not found.")
+        print("No available workers at the moment.")
         print("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
+
+    input("Press Enter to continue...")
 
 #UPDATE WORKER----------------------------------------------------------
 
@@ -164,12 +257,11 @@ def updateWorker():
             print("Worker updated successfully.")
 
             while True:
-                try:
-                    contact = int(input("Enter contact number: "))
-                    if str(contact)[0] == '0' and str(contact)[1] == '9' and len(str(contact)) == 11:
-                        break
-                except ValueError:
-                    print("Invalid input. Try Again")
+                contact = input("Enter contact number: ").strip()
+                if contact[:2] == '09' and len(contact) == 11 and contact.isdigit():
+                    contact = int(contact)
+                    break
+                print("Invalid input. Try Again")
 
             while True:
                 socialMedia = input("Social Media Account (ex. Facebook Juan Cruz): ")
@@ -187,8 +279,9 @@ def updateWorker():
     print("Worker not found.")
     print("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
 
+    input("Press Enter to continue...")
 
-
+    saveToFile()
 #REMOVE WORKER-------------------------------------------------
 def removeWorker():
     target = input("Enter first name to remove: ")
@@ -203,9 +296,15 @@ def removeWorker():
     print("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
     print("Worker not found.")
     print("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
-#MENU---------------------------------------------------------------------
+    saveToFile()
 
+    input("Press Enter to continue...")
+
+
+#MENU---------------------------------------------------------------------
+loadFromFile()
 while True:
+    cls()
     print("╔═══════════════════════════════╗")
     print("║=== LOCAL SERVICE DIRECTORY ===║")
     print("║═══════════════════════════════║")
@@ -219,10 +318,12 @@ while True:
     print("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
 
     if choice == "1": #Post Aplication
+        cls()
         addWorker()
 
     elif choice == "2": #Hire workers
         while True:
+            cls()
             print("---= HIRE WORKERS =---")
             print("╔════════════════════╗") 
             print("║1. Search Worker    ║")
@@ -248,6 +349,7 @@ while True:
 
     elif choice == "3":
         while True:
+            cls()
             print("---== ADMIN OPTIONS ==---")
             print("╔═══════════════════════╗") 
             print("║1. Update Worker Data  ║")
@@ -270,6 +372,7 @@ while True:
             else:
                 print("Invalid Input. Try Again")
     elif choice == "4":
+
         print("┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅┅")
         print("Thank you for using our service. GoodBye")
         print("Exiting system...")
