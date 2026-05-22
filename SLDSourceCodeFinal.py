@@ -165,12 +165,19 @@ def updateWorker():
 
             while True:
                 try:
-                    contact = int(input("Enter new contact number: "))
-                    break
+                    contact = int(input("Enter contact number: "))
+                    if str(contact)[0] == '0' and str(contact)[1] == '9' and len(str(contact)) == 11:
+                        break
                 except ValueError:
                     print("Invalid input. Try Again")
 
-            socialMedia = input("New Social Media Account (ex. Facebook Juan Cruz): ")
+            while True:
+                socialMedia = input("Social Media Account (ex. Facebook Juan Cruz): ")
+                if socialMedia.isdigit():
+                    print("Invalid input. Try Again")
+                else:
+                    break
+    
             print("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
             print("Worker updated successfully.")
             print("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
