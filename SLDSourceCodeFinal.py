@@ -23,12 +23,12 @@ def binarySearch(target):
 
     while low <= high:
         mid = (low + high) // 2
-        currentName = workers[mid]["firstName"].lower()
+        currentProf = workers[mid]["profession"].lower()
 
-        if currentName == target.lower():
+        if currentProf == target.lower():
             return mid
 
-        elif currentName < target.lower():
+        elif currentProf < target.lower():
             low = mid + 1
 
         else:
@@ -43,9 +43,10 @@ def addWorker():
 
     firstName = input("Enter first name: ")
     lastName = input("Enter last name: ")
-    barangay = input("Enter city: ")
-    zone = input("Enter province: ")
+    barangay = input("Enter barangay: ")
+    zone = input("Enter zone: ")
     profession = input("Enter profession: ")
+    
 
     while True:
         try:
@@ -61,7 +62,7 @@ def addWorker():
         except ValueError:
             print("Invalid input. Try Again")
 
-        socialMedia = input("Social Media Account (ex. Facebook Juan Cruz): ")
+    socialMedia = input("Social Media Account (ex. Facebook Juan Cruz): ")
 
     worker = {
         "firstName": firstName,
@@ -76,26 +77,32 @@ def addWorker():
 
     workers.append(worker)
 
+    print("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
     print("Worker added successfully.")
+    print("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
 
 #DISPLAY ALL WORKERS-------------------------------------------------
 
 def displayWorkers():
 
     if len(workers) == 0:
+        print("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
         print("No workers found.")
+        print("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
         return
 
     print("\n====SERVICE PROVIDERS====")
 
     for i, worker in enumerate(workers):
-
+        print("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
         print(f"\nWorker #{i+1}")
         print("Name:", worker["firstName"], worker["lastName"])
         print("Barangay:", worker["barangay"])
         print("Zone:", worker["zone"])
+        print("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
         print("Profession:", worker["profession"])
         print("Hourly Rate:", worker["hourRate"])
+        print("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
         print("Contact Number:", worker["contact"])
         print("Social Media Account:", worker["socialMedia"])
 
@@ -103,21 +110,26 @@ def displayWorkers():
 
 def searchWorker():
     insertionSort()
-    target = input("Enter first name to search: ")
+    target = input("Enter expertise/profession to search: ")
     result = binarySearch(target)
     if result != -1:
         worker = workers[result]
+        print("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
         print("\nWorker Found")
+        print("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
         print("Name:", worker["firstName"], worker["lastName"])
         print("Barangay:", worker["barangay"])
         print("Zone:", worker["zone"])
+        print("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
         print("Profession:", worker["profession"])
         print("Hourly Rate:", worker["hourRate"])
+        print("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
         print("Contact Number:", worker["contact"])
         print("Social Media Account:", worker["socialMedia"])
     else:
+        print("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
         print("Worker not found.")
-
+        print("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
 
 #UPDATE WORKER----------------------------------------------------------
 
@@ -125,7 +137,12 @@ def updateWorker():
     target = input("Enter first name to update: ")
     for worker in workers:
         if worker["firstName"].lower() == target.lower():
+            print("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
+            print("\nWorker Found")
             print("\n--=Enter new information=--")
+            print("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
+            worker["firstName"] = input("New first name: ")
+            worker["lastName"] = input("New last name: ")
             worker["barangay"] = input("New barangay: ")
             worker["zone"] = input("New zone: ")
             worker["profession"] = input("New profession: ")
@@ -146,9 +163,15 @@ def updateWorker():
                     print("Invalid input. Try Again")
 
             socialMedia = input("New Social Media Account (ex. Facebook Juan Cruz): ")
+            print("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
+            print("Worker updated successfully.")
+            print("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
             return
         
+    print("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
     print("Worker not found.")
+    print("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
+
 
 
 #REMOVE WORKER-------------------------------------------------
@@ -157,24 +180,28 @@ def removeWorker():
     for worker in workers:
         if worker["firstName"].lower() == target.lower():
             workers.remove(worker)
+            print("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
             print("Worker removed successfully.")
-            return
-
+            print("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
+            
+            
+    print("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
     print("Worker not found.")
-
+    print("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
 #MENU---------------------------------------------------------------------
 
 while True:
-    print("╔═════════════════════════════════╗")
-    print("║\n=== LOCAL SERVICE DIRECTORY ===║")
-    print("║═════════════════════════════════║")
-    print("║1. Post Application              ║")
-    print("║2. Hire Workers                  ║")
-    print("║3. Admin Options                 ║")
-    print("║4. Exit                          ║")
-    print("╚═════════════════════════════════╝")
+    print("╔═══════════════════════════════╗")
+    print("║=== LOCAL SERVICE DIRECTORY ===║")
+    print("║═══════════════════════════════║")
+    print("║1. Post Application            ║")
+    print("║2. Hire Workers                ║")
+    print("║3. Admin Options               ║")
+    print("║4. Exit                        ║")
+    print("╚═══════════════════════════════╝")
 
     choice = input("Enter choice: ")
+    print("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
 
     if choice == "1": #Post Aplication
         addWorker()
@@ -190,6 +217,7 @@ while True:
 
 
             choiceTwo = input("Enter choice: ")
+            print("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
 
             if choiceTwo == "1":
                 searchWorker()
@@ -213,6 +241,7 @@ while True:
             print("╚═══════════════════════╝")
 
             choiceThree = input("Enter choice: ")
+            print("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
 
             if choiceThree == "1":
                 updateWorker()
