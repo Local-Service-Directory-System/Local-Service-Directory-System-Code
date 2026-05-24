@@ -410,6 +410,7 @@ def removeWorker():
 
     while True:
         try: 
+            print("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
             choice = int(input("Enter worker number to remove (0 to go back): "))
             if choice == 0:
                 return
@@ -418,6 +419,7 @@ def removeWorker():
                 confirm = input(f"Are you sure you want to remove {worker['firstName']} {worker['lastName']}? (y/n): ")
                 if confirm.lower() == "y":
                     workers.remove(worker)
+                    prin()
                     print("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
                     print("Worker removed successfully.")
                     print("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
