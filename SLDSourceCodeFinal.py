@@ -223,19 +223,26 @@ def searchWorker():
     target = input("Enter expertise/profession to search: ")
     result = binarySearch(target)
     if result != -1:
-        worker = workers[result]
         print("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
-        print("\nWorker Found")
+        print("Workers Found!")
+        print("Total workers found:", len(result))
         print("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
-        print("Name:", worker["firstName"], worker["lastName"])
-        print("Barangay:", worker["barangay"])
-        print("Zone:", worker["zone"])
-        print("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
-        print("Profession:", worker["profession"])
-        print("Hourly Rate:", worker["hourRate"])
-        print("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
-        print("Contact Number:", worker["contact"])
-        print("Social Media Account:", worker["socialMedia"])
+
+        for num, worker in enumerate(result, start=1):
+            worker = workers[worker]
+            print(f"Worker #{num}")
+            print("══════════════════════════════")
+            print("Name:", worker["firstName"], worker["lastName"])
+            print("Barangay:", worker["barangay"])
+            print("Zone:", worker["zone"])
+            print("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
+            print("Profession:", worker["profession"])
+            print("Hourly Rate:", worker["hourRate"])
+            print("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
+            print("Contact Number:", worker["contact"])
+            print("Social Media Account:", worker["socialMedia"])
+            print("══════════════════════════════")  
+            print()
     else:
         print("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
         print("No available workers at the moment.")
