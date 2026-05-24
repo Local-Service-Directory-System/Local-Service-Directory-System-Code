@@ -369,22 +369,53 @@ def updateWorker():
         return
 #REMOVE WORKER-------------------------------------------------
 def removeWorker():
-    target = input("Enter first name to remove: ")
+    target = input("Enter first name to remove: ") 
+    
+    matchedWorkers = []
     for worker in workers:
         if worker["firstName"].lower() == target.lower():
-            workers.remove(worker)
-            print("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
-            print("Worker removed successfully.")
-            print("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
-            return
-            
-            
-    print("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
-    print("Worker not found.")
-    print("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
-    saveToFile()
+            matchedWorkers.append(worker)
 
-    input("Press Enter to continue...")
+    if len(matchedWorkers) == 0:
+        print("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
+        print("Worker not found.")  
+        print("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
+        input("Press Enter to continue...") 
+        return
+    
+    print("--==MATCHEDWORKER==--:")
+    for num, worker in enumerate(matchedWorkers, start=1):
+        print()
+        print(f"Worker #{num}")
+        print("══════════════════════════════")
+        print("Name:", worker["firstName"], worker["lastName"]) 
+        print("Barangay:", worker["barangay"])
+        print("Zone:", worker["zone"])
+        print("Profession:", worker["profession"])
+        print("Hourly Rate:", worker["hourRate"])
+        print("Contact Number:", worker["contact"])
+        print("Social Media Account:", worker["socialMedia"])
+
+    while True:
+        try: 
+            choice = int(input("Enter worker number to update (0 to go back): "))
+            if choice == 0:
+                return
+            elif 1 <= choice <= len(matchedWorkers):
+                worker = matchedWorkers[choice - 1]
+                workers.remove(worker)
+                print("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
+                print("Worker removed successfully.")
+                print("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
+                input("Press Enter to continue...")
+                saveToFile()
+                return
+            else:
+                print("Invalid number. Try Again")
+                continue
+        except ValueError:
+            print("Invalid input. Try Again")
+
 
 
 #MENU---------------------------------------------------------------------
