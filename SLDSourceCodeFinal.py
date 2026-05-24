@@ -313,23 +313,23 @@ def updateWorker():
 
         newFirstName = input(f"New first name (current: {worker['firstName']}): ")
         if newFirstName.strip() != "":
-            worker["firstName"] = newFirstName
+            worker["firstName"] = newFirstName.title()
 
         newLastName = input(f"New last name (current: {worker['lastName']}): ")
         if newLastName.strip() != "":
-            worker["lastName"] = newLastName
+            worker["lastName"] = newLastName.title()
 
         newBarangay = input(f"New barangay (current: {worker['barangay']}): ")
         if newBarangay.strip() != "":
-            worker["barangay"] = newBarangay
+            worker["barangay"] = newBarangay.title()
 
         newZone = input(f"New zone (current: {worker['zone']}): ")
         if newZone.strip() != "":
-            worker["zone"] = newZone
+            worker["zone"] = newZone.title()
 
         newProfession = input(f"New profession (current: {worker['profession']}): ")
         if newProfession.strip() != "":
-            worker["profession"] = newProfession
+            worker["profession"] = newProfession.title()
                 
 #---------------------------HOUR RATE-----------------------
         while True:
@@ -367,7 +367,7 @@ def updateWorker():
                 continue
 
             else:
-                worker["socialMedia"] = newSocialMedia
+                worker["socialMedia"] = newSocialMedia.title()
                 break   
     
     
