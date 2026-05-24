@@ -348,6 +348,12 @@ while True:
                 print("Invalid Input. Try Again")
 
     elif choice == "3":
+        adminPassword = "IloveUSTP!"  #PASS NI NATO
+        enteredPassword = input("Enter admin password to access operations: ")
+        if enteredPassword != adminPassword:
+            print("Incorrect admin password.")
+            input("Press Enter to go back to menu..")
+            continue
         while True:
             cls()
             print("---== ADMIN OPTIONS ==---")
