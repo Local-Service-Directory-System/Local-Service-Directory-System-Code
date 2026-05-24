@@ -140,6 +140,7 @@ def addWorker():
             print("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
             print("Worker already exists.")
             print("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
+            input("Press Enter to continue...")
             return
 
 
@@ -254,83 +255,117 @@ def searchWorker():
 
 def updateWorker():
     target = input("Enter first name to update: ")
+
+    matchedWorkers = []
     for worker in workers:
         if worker["firstName"].lower() == target.lower():
-            print("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
-            print("\nWorker Found")
-            print("\n--=Enter new information=--")
-            print("Leave BLANK if NO CHANGES")
-            print("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
+            matchedWorkers.append(worker)
 
-            newFirstName = input("New first name: ")
-            if newFirstName.strip() != "":
-                worker["firstName"] = newFirstName
+    if len(matchedWorkers) == 0:
+        print("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
+        print("Worker not found.")  
+        print("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
+        input("Press Enter to continue...") 
+        return
+    
+    print("--==MATCHEDWORKER==--:")
+    for num, worker in enumerate(matchedWorkers, start=1):
+        print(f"Worker #{num}")
+        print("══════════════════════════════")
+        print("Name:", worker["firstName"], worker["lastName"]) 
+        print("Barangay:", worker["barangay"])
+        print("Zone:", worker["zone"])
+        print("Profession:", worker["profession"])
+        print("Hourly Rate:", worker["hourRate"])
+        print("Contact Number:", worker["contact"])
+        print("Social Media Account:", worker["socialMedia"])
 
-            newLastName = input("New last name: ")
-            if newLastName.strip() != "":
-                worker["lastName"] = newLastName
+    while True:
+        try: 
+            choice = int(input("Enter worker number to update (0 to go back): "))
+            if choice == 0:
+                return
+            elif 1 <= choice <= len(matchedWorkers):
+                worker = matchedWorkers[choice - 1]
+            else:
+                print("Invalid number. Try Again")
+                continue
+        except ValueError:
+            print("Invalid input. Try Again")
 
-            newBarangay = input("New barangay: ")
-            if newBarangay.strip() != "":
-                worker["barangay"] = newBarangay
+                
+        print("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
+        print("\n--=Enter new information=--")
+        print("Leave BLANK if NO CHANGES")
+        print("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
 
-            newZone = input("New zone: ")
-            if newZone.strip() != "":
-                worker["zone"] = newZone
+        newFirstName = input(f"New first name (current: {worker['firstName']}): ")
+        if newFirstName.strip() != "":
+            worker["firstName"] = newFirstName
 
-            newProfession = input("New profession: ")
-            if newProfession.strip() != "":
-                worker["profession"] = newProfession
+        newLastName = input(f"New last name (current: {worker['lastName']}): ")
+        if newLastName.strip() != "":
+            worker["lastName"] = newLastName
+
+        newBarangay = input(f"New barangay (current: {worker['barangay']}): ")
+        if newBarangay.strip() != "":
+            worker["barangay"] = newBarangay
+
+        newZone = input(f"New zone (current: {worker['zone']}): ")
+        if newZone.strip() != "":
+            worker["zone"] = newZone
+
+        newProfession = input(f"New profession (current: {worker['profession']}): ")
+        if newProfession.strip() != "":
+            worker["profession"] = newProfession
                 
 #---------------------------HOUR RATE-----------------------
-            while True:
-                newHourRate = input("New hourly rate: ")
+        while True:
+            newHourRate = input(f"New hourly rate (current: {worker['hourRate']}): ")
 
-                if newHourRate == "":
-                    break
+            if newHourRate == "":
+                break
 
-                try:
-                    worker["hourRate"] = int(newHourRate)
-                    break
-                except ValueError:
-                    print("Invalid input. Try Again")
+            try:
+                worker["hourRate"] = int(newHourRate)
+                break
+            except ValueError:
+                print("Invalid input. Try Again")
 
 #------------------------CONTACT NUMBER----------------------
-            while True:
-                try:
-                    contact = int(input("Enter contact number: "))
-                    if str(contact)[0] == '0' and str(contact)[1] == '9' and len(str(contact)) == 11:
-                        break
-                except ValueError:
-                    print("Invalid input. Try Again")
+        while True:
+            contact = input(f"Enter contact number (current: {worker['contact']}): ")
+            if contact.strip() == "":
+                break
+            elif contact[:2] == '09' and len(contact) == 11 and contact.isdigit():
+                worker["contact"] = int(contact)
+                break
+            else:
+                print("Invalid input. Try Again")
 
-            while True:
-                newSocialMedia = input("Social Media Account (ex. Facebook Juan Cruz): ")
+#-----------------------SOCIAL MEDIA ACCOUNT----------------------
+        while True:
+            newSocialMedia = input(f"Social Media Account (current: {worker['socialMedia']}): ")
 
-                if newSocialMedia.strip() != "":
-                    break
+            if newSocialMedia.strip() == "":
+                break
                 
-                if newSocialMedia.isdigit():
-                    print("Invalid input. Try Again")
-                    continue
+            elif newSocialMedia.strip().isdigit():
+                print("Invalid input. Try Again")
+                continue
 
-                else:
-                    worker["socialMedia"] = newSocialMedia
-                    break   
+            else:
+                worker["socialMedia"] = newSocialMedia
+                break   
     
     
-            print("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
-            print("Worker updated successfully.")
-            print("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
-            return
-        
-    print("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
-    print("Worker not found.")
-    print("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
+        print("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
+        print("Worker updated successfully.")
+        print("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
+        input("Press Enter to continue...")
 
-    input("Press Enter to continue...")
-
-    saveToFile()
+        saveToFile()
+        return
 #REMOVE WORKER-------------------------------------------------
 def removeWorker():
     target = input("Enter first name to remove: ")
@@ -369,6 +404,7 @@ while True:
 
     if choice == "1": #Post Aplication
         cls()
+        loadFromFile()
         addWorker()
 
     elif choice == "2": #Hire workers
