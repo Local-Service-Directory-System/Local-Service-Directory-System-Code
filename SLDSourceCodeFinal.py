@@ -388,7 +388,7 @@ def removeWorker():
             print("Worker removed successfully.")
             print("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
             return
-            
+    input("Press Enter to continue...")       
             
     print("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
     print("Worker not found.")
