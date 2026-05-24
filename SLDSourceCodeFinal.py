@@ -270,6 +270,7 @@ def updateWorker():
     
     print("--==MATCHEDWORKER==--:")
     for num, worker in enumerate(matchedWorkers, start=1):
+        print()
         print(f"Worker #{num}")
         print("══════════════════════════════")
         print("Name:", worker["firstName"], worker["lastName"]) 
