@@ -138,7 +138,7 @@ def addWorker():
     for worker in workers:
         if worker["firstName"].lower() == firstName.lower() and worker["lastName"].lower() == lastName.lower() and worker["contact"] == contact:
             print("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
-            print("Worker already exists.")
+            print("Worker already exists. Please update worker details instead.")
             print("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
             input("Press Enter to continue...")
             return
@@ -244,6 +244,17 @@ def searchWorker():
             print("Social Media Account:", worker["socialMedia"])
             print("══════════════════════════════")  
             print()
+            hire = input("Do you want to hire this worker? (y/n): ")
+            if hire.lower() == "y":
+                cls()
+                print(f"\nWorker chosen: {worker['firstName']} {worker['lastName']}")
+                print(f"A message has been sent. Please refer to 0{worker['contact']} for more communication and contact.")
+                print("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
+            else:
+                print("\nSorry, this worker was not the perfect fit. Please press Enter to go back to menu.")
+                print("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
+            input("Press Enter to continue...")
+            return
     else:
         print("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
         print("No available workers at the moment.")
@@ -283,7 +294,7 @@ def updateWorker():
 
     while True:
         try: 
-            choice = int(input("Enter worker number to update (0 to go back): "))
+            choice = int(input("Enter 1 to continue update, 0 to go back: "))
             if choice == 0:
                 return
             elif 1 <= choice <= len(matchedWorkers):
