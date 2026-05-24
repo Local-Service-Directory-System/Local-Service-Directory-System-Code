@@ -28,5 +28,25 @@
         "hourRate": 81,
         "contact": 9875468923,
         "socialMedia": "Richard Yarn"
+    },
+    {
+        "firstName": "Cassie",
+        "lastName": "Faith",
+        "barangay": "Secret",
+        "zone": "Zone 10",
+        "profession": "Electrician",
+        "hourRate": 10000,
+        "contact": 9973562004,
+        "socialMedia": "Cassandra Faith A. Ebcas"
+    },
+    {
+        "firstName": "Cam",
+        "lastName": "Miy",
+        "barangay": "Zone 10",
+        "zone": "Carmen",
+        "profession": "Electrician",
+        "hourRate": 1000,
+        "contact": 9754946042,
+        "socialMedia": "Cammiy"
     }
 ]
