@@ -50,14 +50,14 @@
         "socialMedia": "Cammiy"
     },
     {
-        "firstName": "Lauraine",
-        "lastName": "Hell Yeah",
-        "barangay": "Lapaz Batchoy",
-        "zone": "Zon 9",
-        "profession": "Website",
-        "hourRate": 100,
-        "contact": 9876543214,
-        "socialMedia": "Lapaz"
+        "firstName": "Xborg",
+        "lastName": "Pratz",
+        "barangay": "Kimnunawa",
+        "zone": "Checked",
+        "profession": "Hotel Transylvania",
+        "hourRate": 90,
+        "contact": 9973562004,
+        "socialMedia": "Juan Pratz"
     },
     {
         "firstName": "Cassandra",
@@ -70,13 +70,23 @@
         "socialMedia": "Cassie Faith Ebcas"
     },
     {
-        "firstName": "Xborg",
-        "lastName": "Pratz",
-        "barangay": "Kimnunawa",
-        "zone": "Checked",
-        "profession": "Hotel Transylvania",
-        "hourRate": 90,
-        "contact": 9973562004,
-        "socialMedia": "Juan Pratz"
+        "firstName": "Auvrey",
+        "lastName": "Patindol",
+        "barangay": "Lumbia",
+        "zone": "Zone 2",
+        "profession": "Web Developer",
+        "hourRate": 100,
+        "contact": 9363577520,
+        "socialMedia": "Auvrey Pats"
+    },
+    {
+        "firstName": "Lauraine",
+        "lastName": "Hell Yeah",
+        "barangay": "Lapaz Batchoy",
+        "zone": "Zon 9",
+        "profession": "Website",
+        "hourRate": 100,
+        "contact": 9876543214,
+        "socialMedia": "Lapaz"
     }
 ]
