@@ -394,6 +394,7 @@ def removeWorker():
         input("Press Enter to continue...") 
         return
     
+    cls()
     print("\n--==MATCHEDWORKER==--:")
     for num, worker in enumerate(matchedWorkers, start=1):
         print()
