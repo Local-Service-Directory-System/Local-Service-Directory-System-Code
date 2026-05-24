@@ -50,16 +50,6 @@
         "socialMedia": "Cammiy"
     },
     {
-        "firstName": "Xborg",
-        "lastName": "Pratz",
-        "barangay": "Kimnunawa",
-        "zone": "Checked",
-        "profession": "Hotel Transylvania",
-        "hourRate": 90,
-        "contact": 9973562004,
-        "socialMedia": "Juan Pratz"
-    },
-    {
         "firstName": "Cassandra",
         "lastName": "Ebcas",
         "barangay": "Carmen",
@@ -88,5 +78,15 @@
         "hourRate": 100,
         "contact": 9876543214,
         "socialMedia": "Lapaz"
+    },
+    {
+        "firstName": "Cassandra",
+        "lastName": "Ebby",
+        "barangay": "Zone 11",
+        "zone": "Zara Larson",
+        "profession": "Electrician",
+        "hourRate": 10000,
+        "contact": 9876543214,
+        "socialMedia": "Cassie Faith"
     }
 ]
