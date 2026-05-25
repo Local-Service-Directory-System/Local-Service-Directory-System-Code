@@ -50,6 +50,16 @@
         "socialMedia": "Cammiy"
     },
     {
+        "firstName": "Xborg",
+        "lastName": "Brah",
+        "barangay": "Lapaz Batchoy",
+        "zone": "Zone 11",
+        "profession": "Plumber",
+        "hourRate": 400,
+        "contact": 9876543216,
+        "socialMedia": "Xborg Bruh"
+    },
+    {
         "firstName": "Cassandra",
         "lastName": "Ebcas",
         "barangay": "Carmen",
@@ -78,5 +88,15 @@
         "hourRate": 100,
         "contact": 9876543214,
         "socialMedia": "Lapaz"
+    },
+    {
+        "firstName": "Xbraag",
+        "lastName": "Bragh",
+        "barangay": "Lapazaa Batchoy",
+        "zone": "Zone 12",
+        "profession": "Plumber",
+        "hourRate": 9000,
+        "contact": 9876543215,
+        "socialMedia": "Xbrag Bragh"
     }
 ]

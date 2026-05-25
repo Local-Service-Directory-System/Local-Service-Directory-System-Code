@@ -40,7 +40,6 @@ def insertionSort():
 #BINARY SEARCH FUNCTION------------------------------------------------
 
 def binarySearch(target):
-
     low = 0
     high = len(workers) - 1
 
@@ -49,7 +48,6 @@ def binarySearch(target):
         currentProf = workers[mid]["profession"].lower()
 
         if currentProf == target.lower():
-            
             matches = [mid]
             # Check for multiple matches
             left = mid - 1
@@ -64,19 +62,16 @@ def binarySearch(target):
 
             matches.sort() 
             return matches # Return list of of matching workers
-        
         elif currentProf < target.lower():
             low = mid + 1
-
         else:
             high = mid - 1
-
     return -1  # Not found
 #ADD WORKER--------------------------------------------------------
 
 def addWorker():
 
-    print("\n=== Post Application ===")
+    print("=== Post Application ===")
 
     while True:
         firstName = input("Enter first name: ").strip()
@@ -522,3 +517,4 @@ while True:
 
     else:
         print("Invalid Input. Try Again")
+        input("Press enter to continue....")

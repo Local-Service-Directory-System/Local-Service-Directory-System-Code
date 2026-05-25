@@ -1,0 +1,1 @@
+        if currentProf == target.lower():
